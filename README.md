@@ -1,0 +1,1 @@
+# golang-httpfs-template
