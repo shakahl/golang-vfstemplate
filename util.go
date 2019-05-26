@@ -45,3 +45,13 @@ func ReadFileString(fs http.FileSystem, path string) (string, error) {
 	}
 	return string(buf), nil
 }
+
+// Exists reports whether the named file or directory exists in http.FileSystem.
+func Exists(fs http.FileSystem, name string) bool {
+	if _, err := Stat(fs, name); err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
+	}
+	return true
+}

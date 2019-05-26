@@ -1,6 +1,8 @@
 golang-vfstemplate
 =======================
 
+Golang library for parsing template files from virtual http filesystem (httpfs)
+
 ## Installation
 
 ```
