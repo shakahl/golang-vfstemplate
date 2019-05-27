@@ -86,6 +86,10 @@ func main() {
 
 ```
 
+## Credits
+
+This project is based on [shurcooL/httpfs](https://github.com/shurcooL/httpfs) maintained by [Dmitri Shuralyov](https://github.com/dmitshur).
+
 ## License
 
 [MIT](./LICENSE)
