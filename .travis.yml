@@ -1,5 +1,5 @@
-# use the latest ubuntu environment (18.04) available on travis
-dist: xenial
+# Use the latest Ubuntu environment (18.04.2)
+dist: bionic
 
 language: go
 
@@ -7,25 +7,25 @@ language: go
 # These will both be unnecessary when Go 1.13 lands.
 env:
   - GO111MODULE=on
-#   - GOFLAGS='-mod vendor'
+  - GOFLAGS='-mod vendor'
 
 # You don't need to test on very old versions of the Go compiler. It's the user's
 # responsibility to keep their compiler up to date.
-# go:
-#   - 1.11
-#   - 1.12
-#   - master
+go:
+  - 1.11
+  - 1.12
+  - master
 
-matrix:
-  include:
-  - go: "1.12"
-    script:
-      - golangci-lint run
-      - go test -v ./...
-  - go: "1.12"
-    script: 
-      - golangci-lint run
-      - go test -v -mod=vendor ./...
+# matrix:
+#   include:
+#   - go: "1.12"
+#     script:
+#       - golangci-lint run
+#       - go test -v ./...
+#   - go: "1.12"
+#     script: 
+#       - golangci-lint run
+#       - go test -v -mod=vendor ./...
 
 # Only clone the most recent commit.
 git:
@@ -43,11 +43,11 @@ notifications:
 # build and immediately stop. It's sorta like having set -e enabled in bash.
 # Make sure golangci-lint is vendored.
 before_script:
-  - go install github.com/golangci/golangci-lint/cmd/golangci-lint
+  - curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin vX.Y.Z
 
 # script always runs to completion (set +e). If we have linter issues AND a
 # failing test, we want to see both. Configure golangci-lint with a
 # .golangci.yml file at the top level of your repo.
-# script:
-#   - golangci-lint run       # run a bunch of code checkers/linters in parallel
-#   - go test -v -race ./...  # Run all the tests with the race detector enabled
+script:
+  - golangci-lint run       # run a bunch of code checkers/linters in parallel
+  - go test -v -race ./...  # Run all the tests with the race detector enabled
