@@ -1,6 +1,8 @@
 golang-vfstemplate
 =======================
 
+[![Build Status](https://api.travis-ci.org/shakahl/golang-vfstemplate.svg?branch=master)](https://travis-ci.org/shakahl/golang-vfstemplate) [![GoDoc](https://godoc.org/github.com/shakahl/golang-vfstemplate?status.svg)](https://godoc.org/github.com/shakahl/golang-vfstemplate)
+
 Golang library for parsing template files from virtual http filesystem (httpfs)
 
 ## About Golang http filesystem interface
